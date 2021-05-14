@@ -1,6 +1,6 @@
 # esbuild-plugin-noflo
 
-This utility can be used for generating statically configured NoFlo component loaders when building NoFlo with a [esbuild](https://esbuild.github.io) bundler.
+This utility can be used for generating statically configured [NoFlo](https://noflojs.org) component loaders when building NoFlo with a [esbuild](https://esbuild.github.io) bundler.
 
 ## Install
 
