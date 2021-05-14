@@ -1,7 +1,9 @@
 # esbuild-plugin-noflo
 
-This utility can be used for generating statically configured [NoFlo](https://noflojs.org) component loaders when building NoFlo with a [esbuild](https://esbuild.github.io) bundler.
+Bundle [NoFlo](https://noflojs.org) graphs, components with [esbuild](https://esbuild.github.io) bundler to a single javascript file without any other dependencies except for builtin node libs.
 It will replace the default noflo component loader and add support for requiring `.fbp` files.
+
+This is based on the existing [plugin for webpack](https://www.npmjs.com/package/noflo-component-loader) and the [fbp-loader](https://github.com/flowbased/fbp-loader).
 
 ## Install
 

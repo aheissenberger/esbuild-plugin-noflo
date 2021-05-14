@@ -13,7 +13,8 @@
   "source": "src/index.ts",
   "types": "dist/index.d.ts",
   "license": "bsd-2-clause",
-  "description": "NoFlo Component Loader generator for esbuild.",
+  "description": "Bundle NoFlo graphs, components with esbuild bundler to a single javascript file without any other dependencies except for builtin node libs."
+  ",
   "keywords": [
     "esbuild",
     "plugin",
