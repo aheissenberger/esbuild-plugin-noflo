@@ -1,6 +1,6 @@
 {
   "name": "esbuild-plugin-noflo",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "main": "dist/index.js",
   "module": "./dist/index.esm.mjs",
   "exports": {
