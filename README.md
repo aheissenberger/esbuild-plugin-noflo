@@ -83,6 +83,10 @@ Default: ['noflo']
 
 [more infos](https://noflojs.org/documentation/publishing/)
 
+## Example Build setup
+
+A complete example on how to create a wrapper to run you graph on the nodejs commandline can be found in the [git repository](https://github.com/aheissenberger/esbuild-plugin-noflo/tree/master/example).
+
 ## Roadmap
 
  - extract libs from this bundler plugin and from [noflo-component-loader](git://github.com/noflo/noflo-component-loader.git)

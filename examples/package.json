@@ -1,0 +1,22 @@
+{
+  "name": "noflotest",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "build": "node build.mjs",
+    "run:dev": "node src/index.mjs",
+    "run:prod": "node dist/index.mjs"
+  },
+  "dependencies": {
+    "esbuild-plugin-noflo": "../",
+    "noflo": "^1.4.3",
+    "noflo-core": "^0.6.1",
+    "noflo-filesystem": "^2.2.0",
+    "noflo-nodejs": "^0.15.1"
+  },
+  "devDependencies": {
+    "esbuild": "^0.11.20"
+  }
+}
