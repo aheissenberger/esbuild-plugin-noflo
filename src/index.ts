@@ -1,6 +1,6 @@
 import discover from './lib/discover'
 import serialize from './lib/serialize'
-import fbp from 'fbp'
+import * as fbp from 'fbp'
 import * as fs from 'fs/promises'
 
 type runtimesI = string[]
@@ -22,7 +22,14 @@ const nofloLoaderFilter = /noflo\/lib\/loader\/register.js$/
 const noflofbpFilter = /\.fbp$/
 
 const defaultManifest: manifestI = {
-    runtimes: ['noflo'],
+    /*
+    noflo-browser for browser-based components
+    noflo-nodejs for Node.js components
+    noflo-gnome for GNOME desktop components
+    microflo for microcontroller components
+    https://noflojs.org/documentation/publishing/
+    */
+    runtimes: ['noflo'], // noflo is allways required, but you need to add 'noflo-nodejs' for alle system specific libs!!
     discover: true,
     recursive: true,
 }
@@ -33,7 +40,7 @@ const defaultOptions: optionsI = {
     runtimes: defaultManifest.runtimes
 }
 
-export function nofloPackage(pkg_options: optionsI = defaultOptions) {
+export default function nofloPlugin(pkg_options: optionsI = defaultOptions) {
     const options = {
         ...defaultOptions,
         ...pkg_options,
@@ -50,28 +57,44 @@ export function nofloPackage(pkg_options: optionsI = defaultOptions) {
                 return { contents: loader }
             })
 
-        }
-    }
-}
 
-export function fbpPackage() {
-
-    return {
-        name: 'fbp',
-        setup(build) {
-
+            // provide loader for `.fbp` files
             build.onResolve({ filter: noflofbpFilter }, args => ({
                 path: args.path,
                 namespace: 'fbp-graph'
-            }))
+            })
+            )
 
             build.onLoad({ filter: /.*/, namespace: 'fbp-graph' }, async ({ path }) => {
                 const source = await fs.readFile(path, "utf8");
-                const fbpGraph:any = fbp.parse(source, {caseSensitive:false})
-                return { contents: `module.exports = ${JSON.stringify(fbpGraph.value, undefined, "\t")};` }
+                const fbpGraph: any = fbp.parse(source, { caseSensitive: false })
+                return { contents: `module.exports = ${JSON.stringify(fbpGraph, undefined, "\t")};` }
             })
+
         }
+
     }
 }
+
+// export function fbpPlugin() {
+
+//     return {
+//         name: 'fbp',
+//         setup(build) {
+
+//             build.onResolve({ filter: noflofbpFilter }, args => ({
+//                 path: args.path,
+//                 namespace: 'fbp-graph'
+//             })
+//             )
+
+//             build.onLoad({ filter: /.*/, namespace: 'fbp-graph' }, async ({ path }) => {
+//                 const source = await fs.readFile(path, "utf8");
+//                 const fbpGraph:any = fbp.parse(source, {caseSensitive:false})
+//                 return { contents: `module.exports = ${JSON.stringify(fbpGraph, undefined, "\t")};` }
+//             })
+//         }
+//     }
+// }
 
 

@@ -1,4 +1,4 @@
-import {nofloPackage as nofloPlugin} from '../src/index'
+import nofloPlugin from '../src/index'
 import * as path from 'path'
 import * as fsmock from 'mock-fs'
 //import * as reqmock from 'mock-require'
@@ -8,6 +8,10 @@ const buildMock = (path, cb) => ({
     onLoad: async (para, callback) => {
         const content = await callback({ path })
         cb(content)
+    },
+    onResolve: async (para, callback) => {
+      const content = await callback({ path })
+      cb(content)
     }
 })
 
@@ -22,6 +26,7 @@ describe('configuration has', () => {
         fsmock(
             {
                 '/node_modules': fsmock.load(path.resolve(__dirname, '../node_modules')),
+                '/noflo/lib/loader/register.js':'',
                 '/component-loader-example': {
                     'index.js': 'module.exports = require("noflo");',
                     'package.json': `{
@@ -134,12 +139,12 @@ exports.register = function (loader, callback) {
 
         const plugin = nofloPlugin(setup)
 
-        plugin.setup(buildMock('loader.js', (data) => {
+        plugin.setup(buildMock('/noflo/lib/loader/register.js', (data) => {
             expect(data.contents).toBe(expected)
             doneTest()
         }))
 
-    }, 500000)
+    })
 
   
 

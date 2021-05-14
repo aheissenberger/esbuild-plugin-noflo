@@ -1,11 +1,14 @@
 {
   "name": "esbuild-plugin-noflo",
-  "version": "1.0.0",
+  "version": "1.0.5",
   "main": "dist/index.js",
   "module": "./dist/index.esm.mjs",
   "exports": {
-    "require": "./dist/index.js",
-    "default": "./dist/index.esm.mjs"
+    "./loader": "./dist/loader.js",
+    ".": {
+      "require": "./dist/index.js",
+      "default": "./dist/index.esm.mjs"
+    }
   },
   "source": "src/index.ts",
   "types": "dist/index.d.ts",
@@ -35,9 +38,9 @@
     "ts-jest": "^26.5.6"
   },
   "scripts": {
-    "build": "microbundle build  -i src/index.ts -f es,cjs --sourcemap",
-    "dev": "microbundle watch src/index.ts  -f es,cjs --no-compress --sourcemap",
-    "prepublishOnly": "microbundle build -i src/index.ts  -f es,cjs --compress --no-sourcemap",
+    "build": "microbundle build  -i src/index.ts -f es,cjs --sourcemap; microbundle build  -i src/lib/loader.js -o dist/loader.js -f cjs",
+    "dev": "microbundle build  -i src/lib/loader.js --no-compress -o dist/loader.js -f cjs;microbundle watch src/index.ts -f es,cjs --no-compress --sourcemap",
+    "prepublishOnly": "rm -fr ./dist && microbundle build -i src/index.ts  -f es,cjs --compress --no-sourcemap && microbundle build  -i src/lib/loader.js --compress --no-sourcemap -o dist/loader.js -f cjs",
     "test": "npm run jest"
   },
   "dependencies": {

@@ -1,6 +1,6 @@
 # esbuild-plugin-noflo
 
-This utility can be used for generating statically configured NoFlo component loaders when building NoFlo with a module bundler
+This utility can be used for generating statically configured NoFlo component loaders when building NoFlo with a [esbuild](https://esbuild.github.io) bundler.
 
 ## Install
 
@@ -23,9 +23,7 @@ await esbuild.build(
                     // Only include components used by this graph
                     // Set to NULL if you want all installed components
                     graph: 'myproject/GraphName',
-                    // Whether to include the original component sources
-                    // in the build
-                    debug: false,
+                    runtime: ['noflo','noflo-node'] 
                 }
             )
         ],
@@ -74,6 +72,16 @@ Default: {
 
 Type: `Array`
 Default: ['noflo']
+
+> **Note:** if you run the result on node and use native libs (e.g. filesystem) you need to add ['noflo','noflo-node'] 
+
+**valid values:**
+ * noflo-browser for browser-based components
+ * noflo-nodejs for Node.js components
+ * noflo-gnome for GNOME desktop components
+ * microflo for microcontroller components
+
+[more infos](https://noflojs.org/documentation/publishing/)
 
 ## Roadmap
 
