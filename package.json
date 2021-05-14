@@ -1,0 +1,46 @@
+{
+  "name": "esbuild-plugin-noflo",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "module": "./dist/index.esm.mjs",
+  "exports": {
+    "require": "./dist/index.js",
+    "default": "./dist/index.esm.mjs"
+  },
+  "source": "src/index.ts",
+  "types": "dist/index.d.ts",
+  "license": "bsd-2-clause",
+  "description": "NoFlo Component Loader generator for esbuild.",
+  "keywords": [
+    "esbuild",
+    "plugin",
+    "noflo",
+    "module"
+  ],
+  "author": "Andreas Heissenberger <andreas@heissenberger.at>",
+  "homepage": "https://github.com/aheissenberger/esbuild-plugin-noflo",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aheissenberger/esbuild-plugin-noflo.git"
+  },
+  "devDependencies": {
+    "@types/jest": "^26.0.23",
+    "fbp": "^1.8.0",
+    "jest": "^26.6.3",
+    "microbundle": "^0.13.0",
+    "mock-fs": "^4.14.0",
+    "mock-require": "^3.0.3",
+    "noflo": "^1.4.3",
+    "noflo-core": "^0.6.1",
+    "ts-jest": "^26.5.6"
+  },
+  "scripts": {
+    "build": "microbundle build  -i src/index.ts -f es,cjs --sourcemap",
+    "dev": "microbundle watch src/index.ts  -f es,cjs --no-compress --sourcemap",
+    "prepublishOnly": "microbundle build -i src/index.ts  -f es,cjs --compress --no-sourcemap",
+    "test": "npm run jest"
+  },
+  "dependencies": {
+    "fbp-manifest": "^0.3.1"
+  }
+}

@@ -1,0 +1,3 @@
+INPORT=Async.IN:IN
+OUTPORT=Invert.OUT:OUT
+Async(core/RepeatDelayed) OUT -> IN Invert(component-loader-example/Invert)
