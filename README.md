@@ -85,7 +85,7 @@ Default: ['noflo']
 
 ## Example Build setup
 
-A complete example on how to create a wrapper to run you graph on the nodejs commandline can be found in the [git repository](https://github.com/aheissenberger/esbuild-plugin-noflo/tree/master/example).
+A complete example on how to create a wrapper to run you graph on the nodejs commandline can be found in the [git repository](https://github.com/aheissenberger/esbuild-plugin-noflo/tree/master/examples).
 
 ## Roadmap
 
