@@ -1,6 +1,7 @@
 # esbuild-plugin-noflo
 
 This utility can be used for generating statically configured [NoFlo](https://noflojs.org) component loaders when building NoFlo with a [esbuild](https://esbuild.github.io) bundler.
+It will replace the default noflo component loader and add support for requiring `.fbp` files.
 
 ## Install
 
@@ -38,7 +39,7 @@ await esbuild.build(
 Only the components need by this Graph will be included.
 
 Type: `String`
-Default: null
+Default: null (all components will be included!)
 
 > **Note:** If you need to support building on Windows, the `test` above must be adapted to the `\` path separator. Use `([\\]+|\/)` instead of `\/`.
 
